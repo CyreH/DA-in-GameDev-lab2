@@ -78,8 +78,12 @@ while i <= len(mon):
         sh.sheet1.update(('C' + str(i)), str(tempInf))
 
 ```
-2. Таблица автоматически сформируется![image](https://user-images.githubusercontent.com/102403656/195152712-7cee96f6-a8e1-4e02-8a06-7190e90bcb28.png)
+2. Таблица автоматически сформируется
+    
+    ![image](https://user-images.githubusercontent.com/102403656/195152712-7cee96f6-a8e1-4e02-8a06-7190e90bcb28.png)
 
+- Создать новый проект на Unity, который будет получать данные из google-таблицы, в которую были записаны данные в предыдущем пункте.
+1. Создаем новый проект![image](https://user-images.githubusercontent.com/102403656/195153984-c83de277-487f-4336-bd07-01b7a6695f7e.png)
 
 
 ## Задание 2
