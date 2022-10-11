@@ -41,7 +41,10 @@
 ### Реализовать совместную работу и передачу данных в связке Python - Google-Sheets – Unity.
 Ход работы:
 - В облачном сервисе google console подключить API для работы с google sheets и google drive.
-1. Создать проект на console.google.com![creatGC](https://user-images.githubusercontent.com/102403656/195144245-195b2a37-4f19-4a32-8d22-1b98fce6c6aa.png)
+1. Создать проект на console.google.com
+
+    ![creatGC](https://user-images.githubusercontent.com/102403656/195144245-195b2a37-4f19-4a32-8d22-1b98fce6c6aa.png)
+
 2. Подключить нужные API
 3. Создать сервисный аккаунт
 
