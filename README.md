@@ -181,6 +181,7 @@ public class NewBehaviourScript : MonoBehaviour
     }
 }
 ```
+3. Запускаем программу и слышим реакции в зависимости от случайных значений в таблице![image](https://user-images.githubusercontent.com/102403656/195162963-fd05af88-6611-4afa-8563-308ee259eb54.png)
 
 
 ## Задание 2
