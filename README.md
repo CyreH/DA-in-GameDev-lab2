@@ -35,17 +35,40 @@
 - ✨Magic ✨
 
 ## Цель работы
-Ознакомиться с основными операторами языка Python на примере реализации линейной регрессии.
+Познакомиться с программными средствами для организции передачи данных между инструментами google, Python и Unity
 
 ## Задание 1
-### Написать программы Hello World на Python и Unity.
+### Реализовать совместную работу и передачу данных в связке Python - Google-Sheets – Unity.
 Ход работы:
-- Создать новый файл в google.colab![image](https://user-images.githubusercontent.com/102403656/191560787-df8a0387-ad0f-4a50-8a9c-9f2941ec1dbe.png)
-- Написать код и запустить программу![image](https://user-images.githubusercontent.com/102403656/191561314-91ee7c61-0330-4ffc-8704-ec838f3c6ef9.png)
-- Сохранить файл на свой Google Drive![image](https://user-images.githubusercontent.com/102403656/191562017-25ed1eaf-9a86-478e-bf9a-90830dfa37f4.png)
-- Создать и открыть проект в Unity и добавить компонент "New script"![image](https://user-images.githubusercontent.com/102403656/191562710-6a5de023-9488-4062-9ee5-30c79a83dc95.png)![image](https://user-images.githubusercontent.com/102403656/191562918-1ba62ffc-2ec3-4e72-89c3-945799ef0fd9.png)
-- Открыть появившийся скрипт и написать программу![image](https://user-images.githubusercontent.com/102403656/191563368-3eac2691-bbfd-4237-ba2f-da0bf616c458.png)![image](https://user-images.githubusercontent.com/102403656/191563962-d0f95a50-7347-45ca-be50-8c12869000ce.png)
-- Запустить программу и открыть консоль![image](https://user-images.githubusercontent.com/102403656/191564287-4ece817a-7d53-4407-8499-5b6742440a1e.png)
+- Создать проект на console.google.com![creatGC](https://user-images.githubusercontent.com/102403656/195144245-195b2a37-4f19-4a32-8d22-1b98fce6c6aa.png)
+- Подключить нужные API
+- Создать сервисный аккаунт![image](https://user-images.githubusercontent.com/102403656/195144716-3232d2a8-ac21-4071-b617-23481ac58c73.png)
+- Создать ключ и сохранить его в python проэкт![image](https://user-images.githubusercontent.com/102403656/195145832-d14e44b9-4956-4ae9-99a9-01f62ab1b289.png)
+- Создать google таблицу и предоставить доступ сервиснуму аккаунту, созданного ранее![image](https://user-images.githubusercontent.com/102403656/195146307-3e868e90-8cea-4d00-94dd-c582690753ff.png)
+- Подключить библеотеки "gspread" и "numpy" и написать скрипт на Python
+
+```py
+
+import gspread
+import numpy as np
+
+gc = gspread.service_account(filename='unitydatasciense-365216-c7a229f4132b.json')
+sh = gc.open('UnitySheets')
+price = np.random.randint(2000, 10000, 11)
+mon = list(range(1, 11))
+i = 0
+while i <= len(mon):
+    i += 1
+    if i == 0:
+        continue
+    else:
+        tempInf = ((price[i - 1] - price[i - 2]) / price[i - 2]) * 100
+        tempInf = str(tempInf).replace('.', ',')
+        sh.sheet1.update(('A' + str(i)), str(i))
+        sh.sheet1.update(('B' + str(i)), str(price[i - 1]))
+        sh.sheet1.update(('C' + str(i)), str(tempInf))
+
+```
 
 
 
