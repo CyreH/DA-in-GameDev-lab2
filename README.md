@@ -185,28 +185,23 @@ public class NewBehaviourScript : MonoBehaviour
 
 
 ## Задание 2
-### Пошагово выполнить каждый пункт раздела "ход работы" с описанием и примерами реализации задач
+### Реализовать запись в Google-таблицу набора данных, полученных с помощью линейной регрессии из лабораторной работы № 1
 Ход работы:
-- Произвести подготовку данных для линейной регрессии. Добавить библеотеки numpy и matplotlib для вычислений и отрисовки соответсвтенно. Добавить списки из случайных данных.
+- Записать полученные данные при помощи линейной регрессии в google-таблицу![image](https://user-images.githubusercontent.com/102403656/195168128-a396a63b-4941-4d03-b204-f22efcb6fb65.png)
 
 ```py
 
+import gspread
 import numpy as np
-import matplotlib.pyplot as plt
-%matplotlib inline
 
-x = [3,21,22,34,54,34,55,67,89,99]
+gc = gspread.service_account(filename='unitydatasciense-365216-c7a229f4132b.json')
+sh = gc.open('UnitySheets').worksheet('Лист2')
+
+x = [3, 21, 22, 34, 54, 34, 55, 67, 89, 99]
 x = np.array(x)
-y = [2,22,24,65,79,82,55,130,150,199]
+y = [2, 22, 24, 65, 79, 82, 55, 130, 150, 199]
 y = np.array(y)
 
-plt.scatter(x,y)
-
-```
-![image](https://user-images.githubusercontent.com/102403656/191739931-8e749766-4a62-4d46-a6f8-97ffa67352b5.png)
-- Определить связанные функции. Функция model: определяет модель линейной регрессии(wx+b). Функция loss_function: функция потерь среднеквадратичной ошибки. Функция optimize: метод градиентного спуска для нахождения частных производных w и b. Функция iterate: итерирует фунцию.
-
-```py
 
 def model(a, b, x):
     return a * x + b
@@ -232,12 +227,7 @@ def iterate(a, b, x, y, times):
     for i in range(times):
         a, b = optimize(a, b, x, y)
     return a, b
-    
-```
-- Начать итерацию
-1. Инициализация и модель итеративной оптимизации
 
-```py
 
 a = np.random.rand(1)
 print(a)
@@ -248,82 +238,20 @@ Lr = 0.000001
 a, b = iterate(a, b, x, y, 1)
 prediction = model(a, b, x)
 loss = loss_function(a, b, x, y)
-print(a, b, loss)
-plt.scatter(x, y)
-plt.plot(x, prediction)
-
+n = 1
+for i in range(0, 1001, 200):
+    if i == 0:
+        i = 1
+    a, b = iterate(a, b, x, y, i)
+    prediction = model(a, b, x)
+    loss = loss_function(a, b, x, y)
+    print(a, b, loss)
+    sh.update(('A' + str(n)), str(i))
+    sh.update(('B' + str(n)), str(a).replace('.', ',')[1:-1])
+    sh.update(('C' + str(n)), str(b).replace('.', ',')[1:-1])
+    sh.update(('D' + str(n)), str(loss).replace('.', ','))
+    n += 1
 ```
-![image](https://user-images.githubusercontent.com/102403656/191745965-fd21bd14-488e-46be-8589-bbb00f60da5d.png)
-
-2. На второй итерации отображаются значения параметров, значения потерь и эффекты визуальзации после итерации
-
-```py
-
-a, b = iterate(a, b, x, y, 2)
-prediction = model(a, b, x)
-loss = loss_function(a, b, x, y)
-print(a, b, loss)
-plt.scatter(x, y)
-plt.plot(x, prediction)
-
-```
-![image](https://user-images.githubusercontent.com/102403656/191746524-947ca9f5-089b-42a1-8afd-46de2359ac59.png)
-
-3. Третья итерация показывает значение параметров, значения потерть и визуализацию после итерации
-
-```py
-
-a, b = iterate(a, b, x, y, 3)
-prediction = model(a, b, x)
-loss = loss_function(a, b, x, y)
-print(a, b, loss)
-plt.scatter(x, y)
-plt.plot(x, prediction)
-
-```
-![image](https://user-images.githubusercontent.com/102403656/191747123-3f8838ce-f330-4ec9-be0e-21c9d160890b.png)
-
-4. На четвертой итерации отображаются значения параметров, значения потерь и эффектов визуализации
-
-```py
-
-a, b = iterate(a, b, x, y, 4)
-prediction = model(a, b, x)
-loss = loss_function(a, b, x, y)
-print(a, b, loss)
-plt.scatter(x, y)
-plt.plot(x, prediction)
-
-```
-![image](https://user-images.githubusercontent.com/102403656/191747402-61263d18-80d1-4b73-a3f1-21ece8b38edb.png)
-
-5. Пятая итерация показывает значение параметра, значение потерь и эффект визуализации после итерации
-
-```py
-
-a, b = iterate(a, b, x, y, 5)
-prediction = model(a, b, x)
-loss = loss_function(a, b, x, y)
-print(a, b, loss)
-plt.scatter(x, y)
-plt.plot(x, prediction)
-
-```
-![image](https://user-images.githubusercontent.com/102403656/191747792-47f49902-660c-499f-a0fc-c9994e0d71a9.png)
-
-6. 10000-я итерация, показывающая значения параметров, потери и визуализацию после итерации
-
-```py
-
-a, b = iterate(a, b, x, y, 10000)
-prediction = model(a, b, x)
-loss = loss_function(a, b, x, y)
-print(a, b, loss)
-plt.scatter(x, y)
-plt.plot(x, prediction)
-
-```
-![image](https://user-images.githubusercontent.com/102403656/191748095-c0f01d87-c24d-46dc-b952-daa9fbc4f9b5.png)
 
 
 
