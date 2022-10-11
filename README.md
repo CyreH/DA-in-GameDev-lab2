@@ -39,8 +39,7 @@
 
 ## Задание 1
 ### Реализовать совместную работу и передачу данных в связке Python - Google-Sheets – Unity.
-Ход работы:
-- В облачном сервисе google console подключить API для работы с google sheets и google drive.
+- В облачном сервисе google console подключить API для работы с google sheets и google drive
 1. Создать проект на console.google.com
 
     ![creatGC](https://user-images.githubusercontent.com/102403656/195144245-195b2a37-4f19-4a32-8d22-1b98fce6c6aa.png)
@@ -186,7 +185,6 @@ public class NewBehaviourScript : MonoBehaviour
 
 ## Задание 2
 ### Реализовать запись в Google-таблицу набора данных, полученных с помощью линейной регрессии из лабораторной работы № 1
-Ход работы:
 - Записать полученные данные при помощи линейной регрессии в google-таблицу![image](https://user-images.githubusercontent.com/102403656/195168128-a396a63b-4941-4d03-b204-f22efcb6fb65.png)
 
 ```py
@@ -256,28 +254,35 @@ for i in range(0, 1001, 200):
 
 
 ## Задание 3
-### Должна ли величина loss стремиться к нулю при изменении исходных данных? Какова роль параметра Lr?
-1. При увеличении количества итераций loss становится всё меньше(вне зависимости от исходных x,y)
+### Самостоятельно разработать сценарий воспроизведения звукового сопровождения в Unity в зависимости от изменения считанных данных в задании 2
+- Я добавил возможность самостоятельно вписывать границы "хороших" и "плохих" значений![image](https://user-images.githubusercontent.com/102403656/195170297-acb95df3-e456-4d9c-95c4-8e72e03b0f6a.png)
 
-![image](https://user-images.githubusercontent.com/102403656/192587403-22e049a0-2eab-45e6-8c40-dc99326cdcf6.png)
-![image](https://user-images.githubusercontent.com/102403656/192587457-3f217e7e-6aad-4b9d-91c9-5c784a12e1da.png)
-![image](https://user-images.githubusercontent.com/102403656/192587515-e4c67991-8d08-47ce-9edc-574754f30736.png)
+```c#
 
-- изменим значение x,y
+public float badValue;
+public float goodValue;
 
-![image](https://user-images.githubusercontent.com/102403656/192588676-960a5372-25fe-4d18-b314-6d9340d078b0.png)
-![image](https://user-images.githubusercontent.com/102403656/192589383-d4d1bf5c-cbc4-4169-aa45-d0e9a7dc2ffa.png)
-![image](https://user-images.githubusercontent.com/102403656/192589446-8a382e5a-70c2-4994-9bd6-2cd8a3b9ea13.png)
-![image](https://user-images.githubusercontent.com/102403656/192589915-b935e6af-65d4-4e4d-8bbb-ea21498a7dc6.png)
+void Update()
+    {
+        if (dataSet["Mon_" + i.ToString()] <= goodValue & statusStart == false & i != dataSet.Count)
+        {
+            StartCoroutine(PlaySelectAudioGood());
+            Debug.Log(dataSet["Mon_" + i.ToString()]);
+        }
 
-2. Чем больше значение Lr, тем больше становятся значения x, y, так и a, b. Так же появилась вероятность того, что регрессия становится отрицательной
+        if (dataSet["Mon_" + i.ToString()] > goodValue & dataSet["Mon_" + i.ToString()] < badValue & statusStart == false & i != dataSet.Count)
+        {
+            StartCoroutine(PlaySelectAudioNormal());
+            Debug.Log(dataSet["Mon_" + i.ToString()]);
+        }
 
-![image](https://user-images.githubusercontent.com/102403656/192594484-5a8ebf01-289d-46db-b3f7-33d94972b5c8.png)
-![image](https://user-images.githubusercontent.com/102403656/192595153-cd29aeed-48e7-46e9-bcaf-939e8842f70b.png)
-![image](https://user-images.githubusercontent.com/102403656/192595176-ef541bd6-9cd1-486c-ab3c-22a0093b13fa.png)
-
-
-
+        if (dataSet["Mon_" + i.ToString()] >= badValue & statusStart == false & i != dataSet.Count)
+        {
+            StartCoroutine(PlaySelectAudioBad());
+            Debug.Log(dataSet["Mon_" + i.ToString()]);
+        }
+    }
+```
 
 
 ## Выводы
