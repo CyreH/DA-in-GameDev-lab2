@@ -52,7 +52,9 @@
 
 4. Создать ключ и сохранить его в python проэкт![image](https://user-images.githubusercontent.com/102403656/195145832-d14e44b9-4956-4ae9-99a9-01f62ab1b289.png)
 5. Создать google таблицу и предоставить доступ сервиснуму аккаунту, созданного ранее![image](https://user-images.githubusercontent.com/102403656/195146307-3e868e90-8cea-4d00-94dd-c582690753ff.png)
-6. Подключить библеотеки "gspread" и "numpy" и написать скрипт на Python
+
+- Реализовать запись данных из скрипта на python в google-таблицу.
+1. Подключить библеотеки "gspread" и "numpy" и написать скрипт на Python
 
 ```py
 
@@ -76,6 +78,7 @@ while i <= len(mon):
         sh.sheet1.update(('C' + str(i)), str(tempInf))
 
 ```
+2. Таблица автоматически сформируется![image](https://user-images.githubusercontent.com/102403656/195152712-7cee96f6-a8e1-4e02-8a06-7190e90bcb28.png)
 
 
 
