@@ -40,11 +40,15 @@
 ## Задание 1
 ### Реализовать совместную работу и передачу данных в связке Python - Google-Sheets – Unity.
 Ход работы:
-- Создать проект на console.google.com ![creatGC](https://user-images.githubusercontent.com/102403656/195144245-195b2a37-4f19-4a32-8d22-1b98fce6c6aa.png)
+- Создать проект на console.google.com
+![creatGC](https://user-images.githubusercontent.com/102403656/195144245-195b2a37-4f19-4a32-8d22-1b98fce6c6aa.png)
 - Подключить нужные API
-- Создать сервисный аккаунт ![image](https://user-images.githubusercontent.com/102403656/195144716-3232d2a8-ac21-4071-b617-23481ac58c73.png)
-- Создать ключ и сохранить его в python проэкт ![image](https://user-images.githubusercontent.com/102403656/195145832-d14e44b9-4956-4ae9-99a9-01f62ab1b289.png)
-- Создать google таблицу и предоставить доступ сервиснуму аккаунту, созданного ранее ![image](https://user-images.githubusercontent.com/102403656/195146307-3e868e90-8cea-4d00-94dd-c582690753ff.png)
+- Создать сервисный аккаунт
+![image](https://user-images.githubusercontent.com/102403656/195144716-3232d2a8-ac21-4071-b617-23481ac58c73.png)
+- Создать ключ и сохранить его в python проэкт
+![image](https://user-images.githubusercontent.com/102403656/195145832-d14e44b9-4956-4ae9-99a9-01f62ab1b289.png)
+- Создать google таблицу и предоставить доступ сервиснуму аккаунту, созданного ранее
+![image](https://user-images.githubusercontent.com/102403656/195146307-3e868e90-8cea-4d00-94dd-c582690753ff.png)
 - Подключить библеотеки "gspread" и "numpy" и написать скрипт на Python
 
 ```py
